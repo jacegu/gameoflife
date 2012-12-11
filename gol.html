@@ -1,0 +1,77 @@
+<html>
+  <head><title>Game of life</title></head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="./gol.js"></script>
+
+  <style>
+    #organism {
+      width: 600px;
+      height: 600px;
+      margin: 50px auto;
+      border: 1px solid grey;
+    }
+    #organism .cell {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+    }
+    #organism .cell.alive {
+      background: black;
+    }
+    #organism .cell.dead {
+      background: white;
+    }
+  </style>
+
+  <body>
+    <section id="organism"></section>
+
+    <script>
+      var ROWS = 50;
+      var COLS = 50;
+
+      function randomOrganism(){
+        var organism = [];
+
+        for(var i = 0; i < ROWS; i++) {
+          organism[i] = []
+          for(var j = 0; j < COLS; j++)
+            organism[i].push(randomCell());
+        }
+        return organism;
+      }
+
+      function randomCell() {
+        if(Math.random() > 0.5)
+          return cell();
+        return deadCell();
+      }
+
+      function display(organism) {
+        $('#organism').html('');
+        for(var i = 0; i < ROWS; i++)
+          for(var j = 0; j < COLS; j++)
+            displayCell(organism[i][j], j);
+      }
+
+      function displayCell(cell) {
+        if(isAlive(cell))
+          $('#organism').append('<div class="cell alive"></div>');
+        else
+          $('#organism').append('<div class="cell dead"></div>');
+      }
+
+      function displayEvolution(organism) {
+        setTimeout(function(){
+          var evolvedOrganism = evolve(organism);
+          display(evolvedOrganism);
+          displayEvolution(evolvedOrganism);
+        }, 500);
+      }
+
+      var organism = randomOrganism();
+      display(organism);
+      displayEvolution(organism);
+    </script>
+  </body>
+</html>
