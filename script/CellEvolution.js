@@ -12,26 +12,26 @@ var REBORN_NEIGHBOUR_COUNT  = 3;
 
 function evolveCell(cell, cellsNeighbourCount) {
   if (isAlive(cell))
-    return evolve_alive_cell(cell, cellsNeighbourCount);
-  return evolve_dead_cell(cell, cellsNeighbourCount);
+    return evolveAliveCell(cell, cellsNeighbourCount);
+  return evolveDeadCell(cell, cellsNeighbourCount);
 }
 
-function evolve_alive_cell(cell, cellsNeighbourCount) {
+function evolveAliveCell(cell, cellsNeighbourCount) {
   if (tooLonely(cellsNeighbourCount) || tooCrowded(cellsNeighbourCount))
     return kill(cell);
   return cell;
 }
 
-function evolve_dead_cell(cell, cellsNeighbourCount) {
+function evolveDeadCell(cell, cellsNeighbourCount) {
   if (cellsNeighbourCount == REBORN_NEIGHBOUR_COUNT)
     return reborn(cell);
   return cell;
 }
 
-function tooLonely(neighbour_count) {
-  return neighbour_count <= LONELY_NEIGHBOUR_COUNT;
+function tooLonely(neighbourCount) {
+  return neighbourCount <= LONELY_NEIGHBOUR_COUNT;
 }
 
-function tooCrowded(neighbour_count) {
-  return neighbour_count >= CROWDED_NEIGHBOUR_COUNT;
+function tooCrowded(neighbourCount) {
+  return neighbourCount >= CROWDED_NEIGHBOUR_COUNT;
 }
