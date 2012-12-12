@@ -1,14 +1,4 @@
 describe('evolution of', function() {
-  beforeEach(function() {
-    this.addMatchers({
-      toBeAlive: function() {
-        return isAlive(this.actual);
-      },
-      toBeDead: function(expected) {
-        return !isAlive(this.actual);
-      }
-    });
-  });
   describe('an alive cell', function() {
     it('kills it if it has no neighbours', function(){
       var neighbourCount = 0
