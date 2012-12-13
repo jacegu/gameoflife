@@ -1,4 +1,4 @@
-Cell = {
+var Cell = {
   alive: function(){
     return { alive: true };
   },

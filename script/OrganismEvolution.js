@@ -7,7 +7,7 @@ function evolve(organism) {
       var location   = { row: row, column: column };
       var cell       = cellAt(location, organism);
       var neighbours = neighbourCount(location, organism);
-      evolvedOrganism[row][column] = evolveCell(cell, neighbours);
+      evolvedOrganism[row][column] = CellEvolution.evolve(cell, neighbours);
     }
   }
   return evolvedOrganism;

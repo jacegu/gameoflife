@@ -1,37 +1,37 @@
-function kill(cell) {
-  return Cell.dead();
-}
-
-function reborn(cellToReborn) {
-  return Cell.alive();
-}
-
 var LONELY_NEIGHBOUR_COUNT  = 1;
 var CROWDED_NEIGHBOUR_COUNT = 4;
 var REBORN_NEIGHBOUR_COUNT  = 3;
 
-function evolveCell(cell, cellsNeighbourCount) {
-  if (Cell.isAlive(cell))
-    return evolveAliveCell(cell, cellsNeighbourCount);
-  return evolveDeadCell(cell, cellsNeighbourCount);
-}
-
-function evolveAliveCell(cell, cellsNeighbourCount) {
-  if (tooLonely(cellsNeighbourCount) || tooCrowded(cellsNeighbourCount))
-    return kill(cell);
-  return cell;
-}
-
-function evolveDeadCell(cell, cellsNeighbourCount) {
-  if (cellsNeighbourCount == REBORN_NEIGHBOUR_COUNT)
-    return reborn(cell);
-  return cell;
-}
-
-function tooLonely(neighbourCount) {
-  return neighbourCount <= LONELY_NEIGHBOUR_COUNT;
-}
-
-function tooCrowded(neighbourCount) {
-  return neighbourCount >= CROWDED_NEIGHBOUR_COUNT;
+var CellEvolution  = {
+  evolve: function(cell, cellsNeighbourCount) {
+    if (Cell.isAlive(cell))
+      return CellEvolution.evolveAlive(cell, cellsNeighbourCount);
+    return CellEvolution.evolveDead(cell, cellsNeighbourCount);
+  },
+  evolveAlive: function(cell, cellsNeighbourCount) {
+    if (CellEvolution.tooLonely(cellsNeighbourCount) ||
+        CellEvolution.tooCrowded(cellsNeighbourCount))
+      return CellEvolution.kill(cell);
+    return cell;
+  },
+  evolveDead: function(cell, cellsNeighbourCount) {
+    if (CellEvolution.rebornConditions(cellsNeighbourCount))
+      return CellEvolution.reborn(cell);
+    return cell;
+  },
+  rebornConditions: function(neighbourCount) {
+    return neighbourCount == REBORN_NEIGHBOUR_COUNT;
+  },
+  tooLonely: function(neighbourCount) {
+    return neighbourCount <= LONELY_NEIGHBOUR_COUNT;
+  },
+  tooCrowded: function(neighbourCount) {
+    return neighbourCount >= CROWDED_NEIGHBOUR_COUNT;
+  },
+  kill: function(cell) {
+    return Cell.dead();
+  },
+  reborn: function(cellToReborn) {
+    return Cell.alive();
+  }
 }
