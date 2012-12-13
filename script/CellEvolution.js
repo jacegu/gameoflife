@@ -1,6 +1,3 @@
-var LONELY_NEIGHBOUR_COUNT  = 1;
-var CROWDED_NEIGHBOUR_COUNT = 4;
-var REBORN_NEIGHBOUR_COUNT  = 3;
 
 var CellEvolution  = {
   evolve: function(cell, cellsNeighbourCount) {
@@ -20,12 +17,15 @@ var CellEvolution  = {
     return cell;
   },
   rebornConditions: function(neighbourCount) {
+    var REBORN_NEIGHBOUR_COUNT  = 3;
     return neighbourCount == REBORN_NEIGHBOUR_COUNT;
   },
   tooLonely: function(neighbourCount) {
+    var LONELY_NEIGHBOUR_COUNT  = 1;
     return neighbourCount <= LONELY_NEIGHBOUR_COUNT;
   },
   tooCrowded: function(neighbourCount) {
+    var CROWDED_NEIGHBOUR_COUNT = 4;
     return neighbourCount >= CROWDED_NEIGHBOUR_COUNT;
   },
   kill: function(cell) {
