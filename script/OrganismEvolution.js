@@ -5,8 +5,8 @@ OrganismEvolution = {
       evolvedOrganism[row] = [];
       for(var column = 0; column < organism[row].length; column++) {
         var location   = { row: row, column: column };
-        var cell       = cellAt(location, organism);
-        var neighbours = neighbourCount(location, organism);
+        var cell       = Organism.cellAt(location, organism);
+        var neighbours = Organism.neighbourCount(location, organism);
         evolvedOrganism[row][column] = CellEvolution.evolve(cell, neighbours);
       }
     }
