@@ -1,7 +1,11 @@
 <html>
   <head><title>Game of life</title></head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-  <script src="./gol.js"></script>
+
+  <script type="text/javascript" src="script/Cell.js"></script>
+  <script type="text/javascript" src="script/Organism.js"></script>
+  <script type="text/javascript" src="script/CellEvolution.js"></script>
+  <script type="text/javascript" src="script/OrganismEvolution.js"></script>
 
   <style>
     #organism {
@@ -43,8 +47,8 @@
 
       function randomCell() {
         if(Math.random() > 0.5)
-          return cell();
-        return deadCell();
+          return Cell.alive();
+        return Cell.dead();
       }
 
       function display(organism) {
@@ -55,7 +59,7 @@
       }
 
       function displayCell(cell) {
-        if(isAlive(cell))
+        if(Cell.isAlive(cell))
           $('#organism').append('<div class="cell alive"></div>');
         else
           $('#organism').append('<div class="cell dead"></div>');
