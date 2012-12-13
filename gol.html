@@ -67,7 +67,7 @@
 
       function displayEvolution(organism) {
         setTimeout(function(){
-          var evolvedOrganism = evolve(organism);
+          var evolvedOrganism = OrganismEvolution.evolve(organism);
           display(evolvedOrganism);
           displayEvolution(evolvedOrganism);
         }, 500);
