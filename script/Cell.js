@@ -1,11 +1,11 @@
-function cell(){
-  return { alive: true };
-}
-
-function deadCell(){
-  return { alive: false };
-}
-
-function isAlive(cell){
-  return cell.alive;
+Cell = {
+  alive: function(){
+    return { alive: true };
+  },
+  dead: function(){
+    return { alive: false };
+  },
+  isAlive: function(cell){
+    return cell.alive;
+  }
 }

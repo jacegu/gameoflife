@@ -1,9 +1,9 @@
 function kill(cell) {
-  return deadCell();
+  return Cell.dead();
 }
 
 function reborn(cellToReborn) {
-  return cell();
+  return Cell.alive();
 }
 
 var LONELY_NEIGHBOUR_COUNT  = 1;
@@ -11,7 +11,7 @@ var CROWDED_NEIGHBOUR_COUNT = 4;
 var REBORN_NEIGHBOUR_COUNT  = 3;
 
 function evolveCell(cell, cellsNeighbourCount) {
-  if (isAlive(cell))
+  if (Cell.isAlive(cell))
     return evolveAliveCell(cell, cellsNeighbourCount);
   return evolveDeadCell(cell, cellsNeighbourCount);
 }

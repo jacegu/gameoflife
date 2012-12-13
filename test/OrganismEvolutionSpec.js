@@ -1,8 +1,8 @@
 describe('evolving an organism', function() {
   var organism = [
-    [cell(), cell(), deadCell()],
-    [cell(), deadCell(), cell()],
-    [cell(), cell(), deadCell()]
+    [Cell.alive(), Cell.alive(), Cell.dead()],
+    [Cell.alive(), Cell.dead(), Cell.alive()],
+    [Cell.alive(), Cell.alive(), Cell.dead()]
   ]
 
   it('evolves each cell in the organism', function() {

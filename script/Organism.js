@@ -6,7 +6,7 @@ function neighbourCount(location, organism) {
   var count = 0;
   var neighbours = neighbourLocations(location, organism);
   for(var i = 0; i < neighbours.length; i++)
-    if (isAlive(cellAt(neighbours[i], organism)))
+    if (Cell.isAlive(cellAt(neighbours[i], organism)))
       count++;
   return count;
 }
